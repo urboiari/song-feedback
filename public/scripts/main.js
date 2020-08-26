@@ -16,9 +16,12 @@ async function postComment() {
   let response = await fetch('/comments', commentObj)
   const json = await response.json();
   console.log(json);
-  
   dissappearElement('#comment-text');
   dissappearElement('#comment-btn');
+
+  let allComments = await fetch('/comments');
+  let jsonComments = await allComments.json();
+  console.log(jsonComments);
 }
 
 async function dissappearElement(elementId) {

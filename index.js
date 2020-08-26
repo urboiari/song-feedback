@@ -9,11 +9,14 @@ app.use(express.json({limit: '1kb'}));
 let database = new Datastore('commentBank.db');
 database.loadDatabase();
 
+// database.remove({}, { multi: true }, function (err, numRemoved) {
+//   console.log(numRemoved);
+// });
+
 app.post('/comments', (request, response) => {
-
-
   console.log(request.body);
   let timestamp = makeTimestamp();
+
   database.insert({
     comment: request.body,
     timestamp: timestamp
@@ -22,6 +25,12 @@ app.post('/comments', (request, response) => {
     status: 'success',
     comment: request.body.comment,
     timestamp: timestamp
+  });
+});
+
+app.get('/comments', (request, response) => {
+  database.find({}, (err, data) => {
+    response.json(data);
   });
 });
 
