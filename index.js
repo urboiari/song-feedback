@@ -1,11 +1,14 @@
+// INITIALIZE EXPRESS AND NEDB
 const express = require('express');
 const Datastore = require('nedb');
 
+// SET UP ROUTE TO LISTEN AT 8000
 const app = express();
 app.listen(8000, () => console.log('listening at 8000'));
 app.use(express.static('public'));
 app.use(express.json({limit: '1kb'}));
 
+// SET UP DATABASE AND FUNCTION TO DELETE DB CONTENT
 let database = new Datastore('commentBank.db');
 database.loadDatabase();
 
@@ -13,6 +16,7 @@ database.loadDatabase();
 //   console.log(numRemoved);
 // });
 
+// SET UP POST TO SEND COMMENTS TO THE DB
 app.post('/comments', (request, response) => {
   console.log(request.body);
   let timestamp = makeTimestamp();
@@ -28,12 +32,14 @@ app.post('/comments', (request, response) => {
   });
 });
 
+// SET UP GET TO SEND DB INFORMATION TO THE CLIENT
 app.get('/comments', (request, response) => {
   database.find({}, (err, data) => {
     response.json(data);
   });
 });
 
+// FUNCTION TO CREATE A TIMESTAMP FOR USE IN DB
 function makeTimestamp() {
   let currentTime = new Date;
   let currentMonth = currentTime.getMonth();
