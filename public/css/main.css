@@ -1,0 +1,4 @@
+button,
+textarea{
+  transition: opacity 3s;
+}
