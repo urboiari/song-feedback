@@ -4,5 +4,14 @@ commentBtn.addEventListener('click', postComment);
 
 function postComment() {
   let comment = document.querySelector('#comment-text').value;
-  console.log(comment);
+  let data = {comment}
+  let commentObj = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  };
+
+  fetch('/comments', commentObj);
 }
