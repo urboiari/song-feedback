@@ -7,5 +7,8 @@ app.use(express.json({limit: '1kb'}));
 
 app.post('/comments', (request, response) => {
   console.log(request.body);
-  response.end();
+  response.json({
+    status: 'success',
+    comment: request.body.comment
+  });
 });

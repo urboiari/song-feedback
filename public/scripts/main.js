@@ -2,7 +2,7 @@ let commentBtn = document.querySelector('#comment-btn');
 
 commentBtn.addEventListener('click', postComment);
 
-function postComment() {
+async function postComment() {
   let comment = document.querySelector('#comment-text').value;
   let data = {comment}
   let commentObj = {
@@ -13,21 +13,22 @@ function postComment() {
     body: JSON.stringify(data),
   };
 
-  fetch('/comments', commentObj);
-
+  let response = await fetch('/comments', commentObj)
+  const json = await response.json();
+  console.log(json);
+  
   dissappearElement('#comment-text');
   dissappearElement('#comment-btn');
 }
 
 async function dissappearElement(elementId) {
     let element = document.querySelector(elementId);
-    await dissappear(elementId, 3);
+    await dissappear(elementId, 2);
     element.parentNode.removeChild(element);
 }
 
 function dissappear(elementId, seconds) {
   return new Promise((resolve, reject) => {
-    document.querySelector(elementId).style.transform = `opacity ${seconds}s`;
     document.querySelector(elementId).style.opacity = '0';
     setTimeout(() => resolve('complete'), seconds * 1000);
   })
