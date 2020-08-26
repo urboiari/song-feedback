@@ -6,14 +6,19 @@
     <title>YMTTIASBIAASE</title>
   </head>
   <body>
-    <audio controls>
-      <source src="audio/ymttiasbiaase.mp3" type="audio/mp3">
-        Your browser does not support this type of audio.
-    </audio>
-    <form id="comment-form" action="/comment" method="POST">
-      <textarea id="comment-text" name="comment" rows="8" cols="80" placeholder="How does this make you feel?"></textarea>
-      <button id='comment-btn' type="button" name="comment-btn">comment</button>
-    </form>
+    <div class="comment-wall">
+
+    </div>
+    <div class="comment-wrapper">
+      <audio controls>
+        <source src="audio/ymttiasbiaase.mp3" type="audio/mp3">
+          Your browser does not support this type of audio.
+      </audio>
+      <form id="comment-form" action="/comment" method="POST">
+        <textarea id="comment-text" name="comment" placeholder="How does this make you feel?"></textarea>
+        <button id='comment-btn' type="button" name="comment-btn">comment</button>
+      </form>
+    </div>
   </body>
   <script src="scripts/main.js"></script>
 </html>
