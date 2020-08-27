@@ -46,3 +46,19 @@ function makePost(data) {
     body: JSON.stringify(data),
   };
 }
+
+// VIDEO AND SONG PLAYING
+let video = document.querySelector('#video');
+let audio = document.querySelector('#song');
+let commentWall = document.querySelector('.comment-wall');
+
+commentWall.addEventListener('click', function() {
+  if (audio.paused) {
+    video.play();
+    audio.play();
+  } else {
+    video.pause();
+    audio.pause();
+  }
+
+})
