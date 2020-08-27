@@ -11,10 +11,20 @@ audio {
   width: inherit;
 }
 
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .comment-wall {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .comment-wrapper {
@@ -39,4 +49,12 @@ audio {
   width: inherit;
   display: flex;
   flex-flow: column;
+}
+
+#play-button {
+  width: 100px;
+}
+
+#pause-button {
+  width: 100px;
 }
