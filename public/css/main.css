@@ -21,6 +21,7 @@ h2 {
   text-shadow: 0px 0px 5px #f5f5f5;
   position: absolute;
   width: 10vw;
+  opacity: 0;
 }
 
 audio {
@@ -41,7 +42,7 @@ video {
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 2s;
 }
 

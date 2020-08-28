@@ -43,6 +43,7 @@ async function postComment() {
   let jsonComments = await allComments.json();
   console.log(jsonComments);
   makeWall(jsonComments);
+  setTimeout(appearWall, 2000);
 }
 
 // PROMISE FUNCTION FOR USE IN DISSAPPEAR ELEMENT
@@ -80,13 +81,19 @@ function makeWall(array) {
     container.innerText = comment.comment;
     container.style.top = `${getRandomInt(0, 90)}%`;
     container.style.left = `${getRandomInt(0, 80)}%`;
-    console.log(container);
+    container.style.transition = `opacity ${(i / 7) + 1}s`
     wall.append(container);
   }
-  setTimeout(function () {
-    wall.style.opacity = '1';
-  }, 2000);
 }
+
+function appearWall() {
+  let wall = document.querySelector('.comment-wall');
+  let nodes = wall.childNodes;
+  for (let node of nodes) {
+    if (node.style != undefined) node.style.opacity = '1';
+  }
+}
+
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
