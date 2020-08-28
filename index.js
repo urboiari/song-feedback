@@ -20,16 +20,20 @@ database.loadDatabase();
 app.post('/comments', (request, response) => {
   console.log(request.body);
   let timestamp = makeTimestamp();
-
-  database.insert({
-    comment: request.body,
-    timestamp: timestamp
-  });
-  response.json({
-    status: 'success',
-    comment: request.body.comment,
-    timestamp: timestamp
-  });
+  if (request.body.comment == ''){
+    console.log('no content to post');
+    response.send(request.body);
+  } else {
+    database.insert({
+      comment: request.body,
+      timestamp: timestamp
+    });
+    response.json({
+      status: 'success',
+      comment: request.body.comment,
+      timestamp: timestamp
+    });
+  }
 });
 
 // SET UP GET TO SEND DB INFORMATION TO THE CLIENT

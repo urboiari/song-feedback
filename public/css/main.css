@@ -97,3 +97,12 @@ video {
 #comment-btn:hover {
   cursor: pointer;
 }
+
+#comment-btn:focus {
+  outline: none;
+}
+
+#comment-btn:active {
+  border: 3px solid #d8d8d8;
+  color: #d8d8d8;
+}

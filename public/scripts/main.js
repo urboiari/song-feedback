@@ -2,6 +2,21 @@
 let commentBtn = document.querySelector('#comment-btn');
 commentBtn.addEventListener('click', postComment);
 
+// VIDEO AND SONG PLAYING
+let video = document.querySelector('#video');
+let audio = document.querySelector('#song');
+let commentWall = document.querySelector('.comment-wall');
+
+commentWall.addEventListener('click', function() {
+  if (audio.paused) {
+    video.play();
+    audio.play();
+  } else {
+    video.pause();
+    audio.pause();
+  }
+});
+
 // COMMENT BUTTON FUNCTION
 async function postComment() {
   // TAKE COMMENT AND TURN IT INTO A POST OBJECT
@@ -9,9 +24,15 @@ async function postComment() {
   let commentObj = makePost({comment});
 
   // SEND COMMENT TO THE DB AND DISSAPPEAR THE COMMENT ELEMENTS
-  let response = await fetch('/comments', commentObj)
+  let response = await fetch('/comments', commentObj);
   const json = await response.json();
   console.log(json);
+  // IF NO COMMENT RETURN
+  if (json.comment == '') {
+    console.log('please enter a comment');
+    return;
+  }
+  // DISSAPPEAR COMMENT ELEMENTS
   dissappearElement('#comment-head', 2);
   dissappearElement('#comment-text', 2);
   dissappearElement('#text-line', 2);
@@ -48,19 +69,3 @@ function makePost(data) {
     body: JSON.stringify(data),
   };
 }
-
-// VIDEO AND SONG PLAYING
-let video = document.querySelector('#video');
-let audio = document.querySelector('#song');
-let commentWall = document.querySelector('.comment-wall');
-
-commentWall.addEventListener('click', function() {
-  if (audio.paused) {
-    video.play();
-    audio.play();
-  } else {
-    video.pause();
-    audio.pause();
-  }
-
-})
