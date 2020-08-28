@@ -12,7 +12,9 @@ async function postComment() {
   let response = await fetch('/comments', commentObj)
   const json = await response.json();
   console.log(json);
+  dissappearElement('#comment-head', 2);
   dissappearElement('#comment-text', 2);
+  dissappearElement('#text-line', 2);
   dissappearElement('#comment-btn', 2);
 
   // RECIEVE ALL THE COMMENTS FROM THE DATABASE
