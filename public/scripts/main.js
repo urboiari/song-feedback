@@ -42,6 +42,7 @@ async function postComment() {
   let allComments = await fetch('/comments');
   let jsonComments = await allComments.json();
   console.log(jsonComments);
+  makeWall(jsonComments);
 }
 
 // PROMISE FUNCTION FOR USE IN DISSAPPEAR ELEMENT
@@ -68,4 +69,27 @@ function makePost(data) {
     },
     body: JSON.stringify(data),
   };
+}
+
+function makeWall(array) {
+  let wall = document.querySelector('.comment-wall');
+  for (let i = 0; i < array.length; i++) {
+    let comment = array[i].comment;
+    console.log(comment);
+    let container = document.createElement('h2');
+    container.innerText = comment.comment;
+    container.style.top = `${getRandomInt(0, 90)}%`;
+    container.style.left = `${getRandomInt(0, 80)}%`;
+    console.log(container);
+    wall.append(container);
+  }
+  setTimeout(function () {
+    wall.style.opacity = '1';
+  }, 2000);
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
